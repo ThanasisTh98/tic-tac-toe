@@ -31,6 +31,15 @@
     background: #F9F7F1;
   }
 
+    .game-container{
+      display: flex;
+      justify-content: center;  
+      flex-direction: row;
+      max-width: 1200px;
+    }
+    .game{
+      padding: 0 2rem;
+    }
 
 
   .content {
@@ -57,10 +66,12 @@
     cursor: pointer;
   }
 
-  .tto-column{
+  .box-grid{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
+    width: fit-content;
+    margin: 0 auto
   }
   .primary-btn{
     margin-top: 1rem;
@@ -97,6 +108,7 @@
   .header-container{
     text-align: center;
     margin-bottom: 2rem;
+    width: 100%;
   }
   .header-container h1{
     margin-top: 1rem;
@@ -105,8 +117,13 @@
     color: var(--special-grey);
   }
   .header-container > p{
-    font-size: 24px;
+    font-size: 18px;
+    font-weight: bolder;
     color: var(--special-grey);
+    text-transform: uppercase;
+    border-top: 3px solid var(--special-grey);
+    border-bottom: 3px solid var(--special-grey);
+    padding: .2rem 0;
   }
   
   .current-player{
@@ -123,7 +140,51 @@
     font-style: normal !important;
     font-weight: 900 !important;
   }
+  .text-column{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 3rem;
+    border-left: 2px solid var(--special-grey);
+    border-right: 2px solid var(--special-grey);
+  }
+  .text-column h3{
+    font-size: 32px;
+    text-align: center;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+    color: var(--special-grey);
+    text-transform: uppercase;
+  }
+  .text-column span{
+    font-family: "Inter", sans-serif;
+    font-weight: 200;
+    font-size: 16px;
+    font-style: italic;
+    margin-bottom: 1rem;
+    color: #2F2F2F;
+  }
 
+  @media (max-width: 992px) {
+    .game-container {
+      flex-direction: column;
+    }
+    
+    .text-column {
+      border-left: none;
+      border-right: none;
+      border-top: 2px solid var(--special-grey);
+      border-bottom: 2px solid var(--special-grey);
+      padding: 2rem 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .game {
+      padding: 0 1rem;
+    }
+  }
 
 </style>
 
@@ -133,29 +194,41 @@
       <h1>TIC-TAC-TOE</h1>
       <p>Click on a box to make your move!</p>
     </div>
-    
-    <div class="game">
-       <div class="tto-column">
+    <div class="game-container">
+      <div class="text-column">
+        <h3>The Lore</h3>
+        <span>From Wikipedia</span>
+        <p>Tic-tac-toe (American English), noughts and crosses (Commonwealth English), or Xs and Os (Canadian or Irish English) is a paper-and-pencil game for two players who take turns marking the spaces in a three-by-three grid, one with Xs and the other with Os.</p>
+      </div>
+
+      <div class="game">
+        <div class="box-grid">
+            @for (box of gameBoard; track $index) {
+              <div class="box" (click)="makeMove($index)">
+                {{ box }}
+              </div>
+            }
+        </div>
         
-          @for (box of gameBoard; track $index) {
-            <div class="box" (click)="makeMove($index)">
-              {{ box }}
-            </div>
-          }
-       </div>
-       
-      @for (currentPlayer of currentPlayer; track $index) {
-        <p class="current-player"> CURRENT PLAYER: <span>{{currentPlayer}}</span> </p>
-       }
-       @if (winner) {
-        <p class="winner-txt"><span>{{ winner }}</span> WON THE GAME 🎉!</p>
-        <button class="primary-btn mx-auto" (click)="restartGame()">Start a new game</button>
-       } @else if (isDraw) {
-        <p class="winner-txt">IT'S A DRAW! 🤝</p>
-        <button class="primary-btn" (click)="restartGame()">Start a new game</button>
-       }
+        @for (currentPlayer of currentPlayer; track $index) {
+          <p class="current-player"> CURRENT PLAYER: <span>{{currentPlayer}}</span> </p>
+        }
+        @if (winner) {
+          <p class="winner-txt"><span>{{ winner }}</span> WON THE GAME 🎉!</p>
+          <button class="primary-btn mx-auto" (click)="restartGame()">Start a new game</button>
+        } @else if (isDraw) {
+          <p class="winner-txt">IT'S A DRAW! 🤝</p>
+          <button class="primary-btn" (click)="restartGame()">Start a new game</button>
+        }
+      </div>
+
+      <div class="text-column">
+        <h3>WHY A NEWSPAPER?</h3>
+        <span>From Theo</span>
+        <p>After waking up today, I remember seeing a newspaper on the tube.
+I remember thinking to myself, I like the vibe of this, I like the off-white coloring of the paper, I like the BIG bold serif fonts and I like that some of them come with silly little games at the back. I know tic-tac-toe isnt one of them but it’s a good showcase of JavaScript skills.</p>
+      </div>
     </div>
-   
   </div>
 </main>
 
