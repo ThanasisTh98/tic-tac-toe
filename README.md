@@ -1,11 +1,12 @@
 # Tic-Tac-Toe
 
-A classic Tic-Tac-Toe game built with Angular 21.0.1.
+Tic-Tac-Toe game to learn the basics of Angular.
+Live Demo: https://thanasisth98.github.io/tic-tac-toe/
 
 ## Project Setup
 
 ### Initial Setup
-1. Create a new Angular project:
+1. First started by creating a new Angular project:
 ```bash
 ng new tic-tac-toe
 ```
@@ -65,7 +66,8 @@ Add the game markup:
 
 ### Step 2: Style the Game Board
 
-In `app.html`, add the essential CSS for the game grid:
+So Tic-tac-toe is just a 3x3 grid of boxes, and I need this to exist before printing any code from the sript.
+In `app.html` I add the essential CSS for the game grid:
 
 **Game Box Styling:**
 ```css
@@ -98,6 +100,7 @@ Additional styling was added based on personal preference for colors, fonts, and
 ### Step 3: Implement Game Logic
 
 Navigate to `src/app/app.ts` to add the TypeScript logic.
+I've commented up all the Typescript for it to make sense whenever I am looking at it again.
 
 #### Declare Game Variables
 ```typescript
@@ -126,7 +129,23 @@ makeMove(index: number) {
 }
 ```
 
-**Key Point:** The ternary operator at the end switches between 'X' and 'O' after each valid move.
+**Toggling between Players:**
+
+The line `this.currentPlayer = this.currentPlayer === 'X' ? 'O' : 'X';` is a way to write an if-else statement.
+
+It works like this:
+- If `currentPlayer` is 'X', set it to 'O'
+- If `currentPlayer` is 'O', set it to 'X'
+
+This is the same as writing:
+```typescript
+if (this.currentPlayer === 'X') {
+  this.currentPlayer = 'O';
+} else {
+  this.currentPlayer = 'X';
+}
+```
+
 
 #### Check for Winner
 ```typescript
@@ -181,16 +200,7 @@ Start the development server:
 ng serve
 ```
 
-Navigate to `http://localhost:4200/` in your browser. The game will auto-reload when you make changes.
-
-## Game Features
-
-- ✅ Two-player gameplay (X and O)
-- ✅ Win detection for all 8 possible combinations
-- ✅ Draw detection when board is full
-- ✅ Restart functionality
-- ✅ Visual feedback for current player
-- ✅ Clean, modern UI with custom styling
+Navigate to `http://localhost:4200/` in the browser. The game will auto-reload when you make changes.
 
 ## Technologies Used
 
@@ -199,6 +209,3 @@ Navigate to `http://localhost:4200/` in your browser. The game will auto-reload 
 - CSS (default)
 - HTML
 
-## Additional Resources
-
-For more information on Angular CLI commands, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
