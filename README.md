@@ -5,6 +5,9 @@ Live Demo: https://thanasisth98.github.io/tic-tac-toe/
 
 ## Project Setup
 
+### Before Setup
+In all transparancy this tutorial was used to set-up this project: https://dev.to/manthanank/building-a-tic-tac-toe-game-in-angular-a-beginners-guide-fcm
+
 ### Initial Setup
 1. First started by creating a new Angular project:
 ```bash
